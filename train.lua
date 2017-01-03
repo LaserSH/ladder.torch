@@ -49,7 +49,7 @@ function Trainer:train()
   local output = model:forward(x_unlabeled)
 
   -- dummy targets
-  targets[1] = torch.zeros(opt.batch_size):typeAs(x_unlabeled)
+  targets[1] = torch.ones(opt.batch_size):typeAs(x_unlabeled)
   for i = 2,#output do
     targets[i] = targets[i] or output[i].new():resizeAs(output[i])
     targets[i]:copy(output[i])
